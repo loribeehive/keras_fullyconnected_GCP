@@ -1,45 +1,3 @@
-### Predicting income with the Census Income Dataset using Keras
-
-This is the Open Source Keras version of the Census sample. The sample runs both as a
-standalone Keras code and on AI Platform.
-
-## Download the data
-The [Census Income Data
-Set](https://archive.ics.uci.edu/ml/datasets/Census+Income) that this sample
-uses for training is hosted by the [UC Irvine Machine Learning
-Repository](https://archive.ics.uci.edu/ml/datasets/). We have hosted the data
-on Google Cloud Storage in a slightly cleaned form:
-
- * Training file is `adult.data.csv`
- * Evaluation file is `adult.test.csv`
-
-```
-TRAIN_FILE=adult.data.csv
-EVAL_FILE=adult.test.csv
-
-GCS_TRAIN_FILE=gs://cloud-samples-data/ml-engine/census/data/adult.data.csv
-GCS_EVAL_FILE=gs://cloud-samples-data/ml-engine/census/data/adult.test.csv
-
-gsutil cp $GCS_TRAIN_FILE $TRAIN_FILE
-gsutil cp $GCS_EVAL_FILE $EVAL_FILE
-```
-
-## Virtual environment
-
-Virtual environments are strongly suggested, but not required. Installing this
-sample's dependencies in a new virtual environment allows you to run the sample
-without changing global python packages on your system.
-
-There are two options for the virtual environments:
-
- * Install [Virtual](https://virtualenv.pypa.io/en/stable/) env
-   * Create virtual environment `virtualenv census_keras`
-   * Activate env `source census_keras/bin/activate`
- * Install [Miniconda](https://conda.io/miniconda.html)
-   * Create conda environment `conda create --name census_keras python=2.7`
-   * Activate env `source activate census_keras`
-
-
 ## Install dependencies
 
  * Install [gcloud](https://cloud.google.com/sdk/gcloud/)
@@ -50,7 +8,7 @@ There are two options for the virtual environments:
 You can run the Keras code locally
 
 ```
-JOB_DIR=census_keras
+JOB_DIR=keras_fullyconnected
 TRAIN_STEPS=2000
 python -m trainer.task --train-files $TRAIN_FILE \
                        --eval-files $EVAL_FILE \
@@ -63,7 +21,7 @@ python -m trainer.task --train-files $TRAIN_FILE \
 You can run Keras training using gcloud locally
 
 ```
-JOB_DIR=census_keras
+JOB_DIR=keras_fullyconnected
 TRAIN_STEPS=200
 gcloud ai-platform local train --package-path trainer \
                              --module-name trainer.task \

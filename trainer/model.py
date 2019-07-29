@@ -131,7 +131,7 @@ def generator_input(filenames, training_history, batch_size):
       # path = pathlib.Path(filenames)
       # files = path.iterdir()
       for file in files:
-          # file = str(file)
+          file = str(file)
           input_reader = pd.read_csv(
             tf.gfile.Open(file),
             names=CSV_COLUMNS,

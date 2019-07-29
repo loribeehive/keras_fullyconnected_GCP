@@ -127,7 +127,7 @@ def generator_input(filenames, training_history, batch_size):
   while True:
       # data = np.load(filenames, allow_pickle=True).item()
       # keys = list(data.keys())
-      files = tf.gfile.Glob(filenames+'/*.csv')
+      files = tf.gfile.Glob(filenames)
       # path = pathlib.Path(filenames)
       # files = path.iterdir()
       for file in files:

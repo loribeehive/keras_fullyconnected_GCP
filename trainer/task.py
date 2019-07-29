@@ -115,12 +115,12 @@ if __name__ == '__main__':
       '--train-files',
       nargs='+',
       help='Training file local or GCS',
-      default='/Users/xuerongwan/Documents/keras_job/train')
+      default='/Users/xuerongwan/Documents/keras_job/train/*.csv')
   parser.add_argument(
       '--eval-files',
       nargs='+',
       help='Evaluation file local or GCS',
-      default='/Users/xuerongwan/Documents/keras_job/eval')
+      default='/Users/xuerongwan/Documents/keras_job/eval/*.csv')
   parser.add_argument(
       '--job-dir',
       type=str,

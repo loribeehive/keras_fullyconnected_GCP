@@ -178,6 +178,9 @@ def process_data(data,training_history):
     #     dataEndIndex = data_sample.index.get_loc(idx.iloc[0] + pd.Timedelta('1 days'), method='nearest')
     # ############test###########
     # disk_testX,disk_testY = reshape_input(data_sample.iloc[0:dataEndIndex],label_data.iloc[0:labelEndIndex],training_history)
+    if data_sample.empty or label_data.empty:
+        return (np.array([]),np.array([]))
+
     disk_trainX,disk_trainY = reshape_input(data_sample, label_data,
                                    training_history)
 

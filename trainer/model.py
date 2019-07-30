@@ -140,7 +140,7 @@ def generator_input(filenames, training_history, batch_size):
 
           input_data = input_reader.dropna()
           (input,label)=process_data(input_data,training_history=training_history)
-          if input.shape[0]<1 or label.shape[0]<1:
+          if input.shape[0]<2 or label.shape[0]<2:
               continue
           idx_len = input.shape[0]
           for index in range(0, idx_len, batch_size):
@@ -201,11 +201,16 @@ def reshape_input(data, label,training_history):
     subData = subData[0:one_hour * (LENN + (training_history - 1))]
     s_Data=np.array([])
     for j in range(LENN):
+
         s_data = subData[j * one_hour:(j * one_hour + one_hour * training_history)]
         if j == 0:
             s_Data = s_data
+            #####if only one row of data in total
+            s_Data = s_Data.reshape(-1, one_hour * training_history)
+
         else:
             s_Data = np.vstack((s_Data, s_data))
+
 
     return (s_Data, subLabel)
 

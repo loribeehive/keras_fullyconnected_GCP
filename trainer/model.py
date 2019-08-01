@@ -34,7 +34,7 @@ from tensorflow.python.saved_model.signature_def_utils_impl import predict_signa
 
 import numpy as np
 bins = np.array([50,100,150,200,250,500,1100])
-CSV_COLUMNS = ('time','IOPS','Throughput','Mbps')
+CSV_COLUMNS = ('time','IOPS','Throughput','MBps')
 
 one_hour = 12
 
@@ -104,7 +104,7 @@ def to_savedmodel(model, export_path):
 
   builder = saved_model_builder.SavedModelBuilder(export_path)
   signature = predict_signature_def(
-      inputs={'Mbps': model.inputs[0]}, outputs={'Category': model.outputs[0]}
+      inputs={'MBps': model.inputs[0]}, outputs={'Category': model.outputs[0]}
   )
   with K.get_session() as sess:
     builder.add_meta_graph_and_variables(
@@ -152,16 +152,16 @@ def generator_input(filenames, training_history, batch_size):
 def process_data(data,training_history):
 
 
-    data_read = data[['time', 'Mbps']]
+    data_read = data[['time', 'MBps']]
     # insert label
-    data_read['Bucket_Index'] = np.digitize(data_read['Mbps'], bins, right=False)
+    data_read['Bucket_Index'] = np.digitize(data_read['MBps'], bins, right=False)
     # make time series as TimeIndex
     idx = pd.to_datetime(data_read['time'])
     data_read = data_read.drop(['time'], axis=1)
     data_read = data_read.set_index(idx)
 
     ####take the mean of every five mins
-    data_sample = data_read['Mbps'].resample('5Min').mean()
+    data_sample = data_read['MBps'].resample('5Min').mean()
     data_sample = data_sample.fillna(0)
     # resample label to max(1H)
     label_data = data_read['Bucket_Index'].resample('1H').max()

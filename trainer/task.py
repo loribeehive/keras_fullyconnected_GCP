@@ -43,7 +43,7 @@ DISK_MODEL = 'disk_model.hdf5'
 
 def train_and_evaluate(args):
   INPUT_DIM = args.training_history*ONE_HOUR
-  CLASS_SIZE = len(bins)
+  CLASS_SIZE = len(bins)+1
   hidden_units = args.hidden_units
   # hidden_units = [int(units) for units in args.hidden_units.split(',')]
   learning_rate = args.learning_rate

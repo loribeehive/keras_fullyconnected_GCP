@@ -191,7 +191,7 @@ def process_data(data,training_history):
 
 def reshape_input(data, label,training_history):
     data_SIZE = len(label.values)-1
-    subLabel = np.zeros((data_SIZE, len(bins)))
+    subLabel = np.zeros((data_SIZE, len(bins)+1))
     label=label.iloc[:-1]
     subLabel[np.arange(data_SIZE), np.array(label.values).astype(int)] = 1
     subLabel = subLabel[training_history:, :]
